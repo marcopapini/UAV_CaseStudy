@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rbd>
+  <time start="0.00" end="720.00" step="0.25"/>
+  <components>
+    <component name="iMX_HW" >
+      <exponential lambda="0.000011905" operatingAge="0.00"/>
+    </component>
+    <component name="TX2_HW" >
+      <exponential lambda="0.000013699" operatingAge="0.00"/>
+    </component>
+    <component name="iMX_Sensors" >
+      <goel-okumoto a="264" b="0.00567377" test="1143" missionOffset="0.00" eta="1.0"/>
+    </component>
+    <component name="iMX_Compute" >
+      <goel_generalized a="232" b="0.00955866" c="0.94808770" test="966" missionOffset="0.00" eta="1.0"/>
+    </component>
+    <component name="iMX_Actuate" >
+      <goel-okumoto a="190" b="0.01289624" test="535" missionOffset="0.00" eta="1.0"/>
+    </component>
+    <component name="TX2_Vision" >
+      <pham-zhang a="173" b="0.00003726" alpha="0.00952618" beta="0.09020500" test="2160" missionOffset="0.00" eta="1.0"/>
+    </component>
+    <component name="TX2_Mission" >
+      <pham-zhang a="121" b="0.000045053" alpha="0.02025640" beta="0.99000000" test="2160" missionOffset="0.00" eta="1.0"/>
+    </component>
+    <component name="TX2_Mavlink" >
+      <ohba_s-shaped a="294" b="0.00022784" phi="1.8186548" test="2160" missionOffset="0.00" eta="1.0"/>
+    </component>
+  </components>
+  <blocks system="UAV">
+    <block outputFilename="UAV.csv">
+      <seriesGeneric>
+        <input name="iMX"/>
+        <input name="TX2"/>
+        <output name="UAV"/>
+      </seriesGeneric>
+    </block>
+    <block outputFilename="iMX.csv">
+      <seriesGeneric>
+        <input name="iMX_HW"/>
+        <input name="iMX_Sensors"/>
+        <input name="iMX_Compute"/>
+        <input name="iMX_Actuate"/>
+        <output name="iMX"/>
+      </seriesGeneric>
+    </block>
+    <block outputFilename="TX2.csv">
+      <seriesGeneric>
+        <input name="TX2_HW"/>
+        <input name="TX2_Vision"/>
+        <input name="TX2_Mission"/>
+        <input name="TX2_Mavlink"/>
+        <output name="TX2"/>
+      </seriesGeneric>
+    </block>
+  </blocks>
+</rbd>
